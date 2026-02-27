@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школа вожатого: Полный курс</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0B1A33;
+            --accent: #00C48C;
+            --accent-alt: #FFB800;
+            --danger: #FF6B6B;
+            --purple: #A855F7;
+            --teal: #2DD4BF;
+            --white: #ffffff;
+            --dark: #060d1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--primary);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--primary) 100%);
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--teal), var(--accent-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .progress-bar-small {
+            width: 150px;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal), var(--accent-alt));
+            transition: width 0.3s ease;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            background: rgba(0,0,0,0.3);
+            overflow-x: auto;
+            padding: 0 20px;
+        }
+
+        .tabs {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 5px;
+            padding: 10px 0;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 10px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .tab:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .tab.active {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .tab.completed::after {
+            content: ' ✓';
+            color: var(--teal);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Lesson Content */
+        .lesson-area {
+            min-height: 60vh;
+        }
+
+        .lesson-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .lesson-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lesson-content h2 {
+            font-size: 1.8rem;
+            color: var(--teal);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 196, 140, 0.3);
+        }
+
+        .lesson-content h3 {
+            font-size: 1.3rem;
+            color: var(--accent-alt);
+            margin: 25px 0 15px;
+        }
+
+        .lesson-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .quote-box {
+            background: rgba(168, 85, 247, 0.15);
+            border-left: 4px solid var(--purple);
+            padding: 20px 25px;
+            border-radius: 0 15px 15px 0;
+            margin: 20px 0;
+        }
+
+        .quote-box p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .quote-box .author {
+            font-size: 0.9rem;
+            color: var(--accent-alt);
+        }
+
+        .warning-box {
+            background: rgba(255, 184, 0, 0.15);
+            border: 2px solid var(--accent-alt);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .warning-box .icon {
+            font-size: 2rem;
+        }
+
+        .info-box {
+            background: rgba(0, 196, 140, 0.1);
+            border: 1px solid var(--teal);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .content-list li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .content-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        .numbered-list {
+            counter-reset: item;
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .numbered-list li {
+            counter-increment: item;
+            padding: 12px 0 12px 45px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .numbered-list li::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 28px;
+            height: 28px;
+            background: var(--teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--teal);
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .card h4 {
+            color: var(--teal);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .quiz-section h3 {
+            color: var(--accent-alt);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-question {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question h4 {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(0, 196, 140, 0.1);
+            border-color: var(--teal);
+        }
+
+        .quiz-option.correct {
+            background: rgba(0, 196, 140, 0.3);
+            border-color: var(--teal);
+        }
+
+        .quiz-option.wrong {
+            background: rgba(255, 107, 107, 0.3);
+            border-color: var(--danger);
+        }
+
+        .quiz-result {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .quiz-result.success {
+            background: rgba(0, 196, 140, 0.2);
+            color: var(--teal);
+        }
+
+        .quiz-result.error {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--danger);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-card h4 {
+            font-size: 1rem;
+            color: var(--teal);
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--accent-alt);
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--teal), var(--accent));
+            border: none;
+            border-radius: 12px;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 196, 140, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        /* Final Test */
+        .final-test {
+            display: none;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .final-test.active {
+            display: block;
+        }
+
+        .final-test h3 {
+            color: var(--accent-alt);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Certificate */
+        .certificate {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.1), rgba(0, 196, 140, 0.1));
+            border: 3px solid var(--accent-alt);
+            border-radius: 30px;
+            margin-top: 30px;
+        }
+
+        .certificate.active {
+            display: block;
+            animation: certAppear 0.5s ease;
+        }
+
+        @keyframes certAppear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .certificate h2 {
+            font-size: 2rem;
+            color: var(--accent-alt);
+            margin-bottom: 20px;
+        }
+
+        .certificate p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--teal);
+            margin: 20px 0;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 15px 0;
+        }
+
+        .accordion-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 196, 140, 0.1);
+        }
+
+        .accordion-toggle {
+            color: var(--teal);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-toggle {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 300px;
+            padding: 0 20px 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tabs {
+                justify-content: flex-start;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .lesson-content h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">🎓 ШКОЛА ВОЖАТОГО</div>
+            <div class="progress-info">
+                <span>Прогресс:</span>
+                <div class="progress-bar-small">
+                    <div class="progress-fill" id="headerProgress" style="width: 0%"></div>
+                </div>
+                <span id="progressText">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs-container">
+        <div class="tabs" id="tabs">
+            <!-- Tabs generated by JS -->
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="lesson-area">
+            <!-- Lesson Contents generated by JS -->
+            <div id="lessonContents"></div>
+            
+            <!-- Final Test -->
+            <div class="final-test" id="finalTest">
+                <h3>🎯 ИТОГОВЫЙ ТЕСТ</h3>
+                <p style="text-align: center; margin-bottom: 30px;">Ответьте на вопросы по всем темам курса</p>
+                <div id="finalTestQuestions"></div>
+                <button class="action-btn" onclick="checkFinalTest()">Проверить результат</button>
+                <div class="quiz-result" id="finalResult"></div>
+            </div>
+
+            <!-- Certificate -->
+            <div class="certificate" id="certificate">
+                <h2>🏆 СЕРТИФИКАТ</h2>
+                <p>Вы успешно прошли курс "Школа вожатого"!</p>
+                <div class="score" id="finalScore">0%</div>
+                <p>Правильных ответов: <span id="correctCount">0</span> из <span id="totalCount">0</span></p>
+                <button class="action-btn" onclick="restartCourse()">Начать заново</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h4>📊 Статистика</h4>
+                <div class="stat-item">
+                    <span class="stat-label">Уроков пройдено</span>
+                    <span class="stat-value" id="lessonsCompleted">0/12</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Тестов пройдено</span>
+                    <span class="stat-value" id="testsCompleted">0/12</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Общий балл</span>
+                    <span class="stat-value" id="totalScore">0%</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-card">
+                <h4>🚀 Действия</h4>
+                <button class="action-btn" id="testBtn" onclick="goToTest()">Итоговый тест</button>
+                <button class="action-btn secondary" onclick="restartCourse()">Сбросить прогресс</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Course Data
+        const courseData = {
+            lessons: [
+                {
+                    id: 1,
+                    title: "Кто такой вожатый",
+                    icon: "👋",
+                    content: `
+                        <h2>Кто такой вожатый?</h2>
+                        
+                        <p>Вожатый — это не просто воспитатель, это друг, наставник и лидер для детей в лагере. От его работы зависит, насколько запомнится ребёнку лето.</p>
+                        
+                        <div class="quote-box">
+                            <p>"Посредственный руководитель излагает. Хороший – объясняет. Выдающийся – показывает. Великий – вдохновляет."</p>
+                            <span class="author">В. Уорд</span>
+                        </div>
+                        
+                        <h3>Что помнят дети после лагеря?</h3>
+                        <p>После отдыха в лагере дети не помнят, что им говорил вожатый. Помнят только его отношение к ним, заботу о них, его личный пример. Впечатление оставляют не слова вожатого, а его поступки.</p>
+                        
+                        <h3>Функции вожатого</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🎭</div><h4>Организатор</h4><p>Создаёт и проводит мероприятия</p></div>
+                            <div class="card"><div class="icon">👨‍🏫</div><h4>Воспитатель</h4><p>Формирует навыки и привычки</p></div>
+                            <div class="card"><div class="icon">❤️</div><h4>Психолог</h4><p>Поддерживает эмоционально</p></div>
+                            <div class="card"><div class="icon">⚽</div><h4>Аниматор</h4><p>Зажигает и веселит</p></div>
+                            <div class="card"><div class="icon">🛡️</div><h4>Защитник</h4><p>Обеспечивает безопасность</p></div>
+                            <div class="card"><div class="icon">👨‍👩‍👧</div><h4>Посредник</h4><p>Связывает с родителями</p></div>
+                        </div>
+                        
+                        <h3>Ключевые качества вожатого</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🎯</div><h4>Ответственность</h4><p>Отвечаешь за детей 24/7</p></div>
+                            <div class="card"><div class="icon">❤️</div><h4>Любовь к детям</h4><p>Основа профессии</p></div>
+                            <div class="card"><div class="icon">⚡</div><h4>Энергичность</h4><p>Способность зажечь</p></div>
+                            <div class="card"><div class="icon">🧠</div><h4>Образованность</h4><p>Широкий кругозор</p></div>
+                            <div class="card"><div class="icon">🤝</div><h4>Командность</h4><p>Работа в команде</p></div>
+                            <div class="card"><div class="icon">😊</div><h4>Эмоциональность</h4><p>Устойчивость к стрессу</p></div>
+                        </div>
+                        
+                        <h3>20 качеств успешного вожатого</h3>
+                        <ol class="numbered-list">
+                            <li>Дисциплинированность и ответственность</li>
+                            <li>Работоспособность и организованность</li>
+                            <li>Тактичность и культура общения</li>
+                            <li>Умение организовать досуг</li>
+                            <li>Разносторонняя образованность</li>
+                            <li>Честность и чуткость</li>
+                            <li>Знание психологии</li>
+                            <li>Уважение к детям</li>
+                            <li>Творческий подход</li>
+                            <li>Инициативность</li>
+                            <li>Способность к самообладанию</li>
+                            <li>Чувство юмора</li>
+                            <li>Терпение и выдержка</li>
+                            <li>Коммуникабельность</li>
+                            <li>Умение слушать</li>
+                            <li>Оптимизм</li>
+                            <li>Креативность</li>
+                            <li>Физическая выносливость</li>
+                            <li>Педагогическая интуиция</li>
+                            <li>Готовность к самосовершенствованию</li>
+                        </ol>
+                        
+                        <h3>Что делает вожатый в течение дня</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Утро (7:00 - 9:00)</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Подъём, зарядка, утренний осмотр, завтрак, подготовка к мероприятиям</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>День (9:00 - 14:00)</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Основные мероприятия, кружки, обед, тихий час</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Вечер (14:00 - 22:00)</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Полдник, мероприятия, ужин, вечерняя свеча, подготовка ко сну</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ночь (22:00 - 7:00)</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Дежурство по отряду, проверка детей, сон (если возможно)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Типичные ошибки начинающих вожатых</h3>
+                        <div class="warning-box">
+                            <div class="icon">🚫</div>
+                            <div>
+                                <h4>Чего следует избегать:</h4>
+                                <p>• Быть слишком строгим или слишком мягким<br>
+                                • Пытаться понравиться всем<br>
+                                • Общаться только с активными детьми<br>
+                                • Кричать на детей<br>
+                                • Сравнивать детей друг с другом<br>
+                                • Обсуждать детей при них<br>
+                                • Обещать то, что нельзя выполнить</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Золотые правила вожатого</h3>
+                        <div class="info-box">
+                            <p>✅ Будьте последовательны в своих требованиях<br>
+                            ✅ Замечайте и хвалите хорошее поведение<br>
+                            ✅ Слушайте детей внимательно<br>
+                            ✅ Соблюдайте режим вместе с детьми<br>
+                            ✅ Будьте примером во всём<br>
+                            ✅ Сохраняйте спокойствие в любой ситуации</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">⚠️</div>
+                            <div>
+                                <h4>Важно помнить</h4>
+                                <p>Дети чувствуют фальшь. Будьте искренними — они это ценят больше всего.</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Что дети помнят после лагеря?",
+                            options: ["Слова вожатого", "Поступки и отношение вожатого", "Расписание занятий"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какое качество — основа работы вожатого?",
+                            options: ["Строгость", "Любовь к детям", "Опыт работы"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что означает «великий — вдохновляет»?",
+                            options: ["Много говорит", "Заставляет детей работать", "Зажигает и мотивирует"],
+                            correct: 2
+                        },
+                        {
+                            question: "Как дети реагируют на фальшь?",
+                            options: ["Не замечают", "Чувствуют и теряют доверие", "Уважают больше"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько часов вожатый отвечает за детей?",
+                            options: ["Только днём", "24/7", "Во время мероприятий"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какая главная функция вожатого?",
+                            options: ["Контроль", "Организация досуга", "Обучение"],
+                            correct: 1
+                        },
+                        {
+                            question: "Чего не должен делать вожатый?",
+                            options: ["Слушать детей", "Кричать на детей", "Быть примером"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как нужно общаться с детьми?",
+                            options: ["Как с маленькими", "На равных, с уважением", "Давать только указания"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Авторитет вожатого",
+                    icon: "⭐",
+                    content: `
+                        <h2>Как завоевать авторитет?</h2>
+                        
+                        <p>Авторитет — это признание и уважение детей. Без него невозможно эффективное воспитание.</p>
+                        
+                        <div class="warning-box">
+                            <div class="icon">🚫</div>
+                            <div>
+                                <h4>Две крайности, которых нужно избегать:</h4>
+                                <p><strong>"Дешёвый авторитет"</strong> — всё разрешать, быть "своим". Приводит к потере уважения.<br>
+                                <strong>"Злой авторитет"</strong> — крики, угрозы. Дети боятся, но не уважают.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Путь к настоящему авторитету</h3>
+                        <ol class="numbered-list">
+                            <li><strong>Любовь к детям</strong> — уважение и доверие к каждому</li>
+                            <li><strong>Внешний вид</strong> — опрятность, аккуратность</li>
+                            <li><strong>Речь</strong> — правильная, чёткая, без жаргона</li>
+                            <li><strong>Характер</strong> — спокойствие, выдержка, тактичность</li>
+                            <li><strong>Внимание</strong> — знать интересы каждого ребёнка</li>
+                            <li><strong>Педагогический оптимизм</strong> — всегда иметь план</li>
+                            <li><strong>Компетентность</strong> — уметь делать многое</li>
+                            <li><strong>Справедливость</strong> — одинаковые правила для всех</li>
+                        </ol>
+                        
+                        <h3>10 способов укрепить авторитет</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🎯</div><h4>Будьте последовательны</h4><p>Одинаковые требования каждый день</p></div>
+                            <div class="card"><div class="icon">👍</div><h4>Хвалите при всех</h4><p>Замечайте хорошее публично</p></div>
+                            <div class="card"><div class="icon">🤫</div><h4>Критикуйте наедине</h4><p>Проблемы обсуждайте без свидетелей</p></div>
+                            <div class="card"><div class="icon">🎮</div><h4>Играйте с детьми</h4><p>Покажите, что вы "свой"</p></div>
+                            <div class="card"><div class="icon">📚</div><h4>Рассказывайте о себе</h4><p>Делитесь историями из жизни</p></div>
+                            <div class="card"><div class="icon">💪</div><h4>Держите слово</h4><p>Выполняйте обещания</p></div>
+                        </div>
+                        
+                        <h3>Как говорить с детьми</h3>
+                        <div class="info-box">
+                            <p>✅ Говорите спокойно и уверенно</p>
+                            <p>✅ Используйте короткие фразы</p>
+                            <p>✅ Не повторяйте дважды</p>
+                            <p>✅ Повышайте тон только для демонстрации недовольства</p>
+                            <p>❌ Не кричите</p>
+                            <p>❌ Не используйте слова-паразиты</p>
+                            <p>❌ Не говорите "ты должен"</p>
+                            <p>✅ Говорите "давай вместе"</p>
+                        </div>
+                        
+                        <h3>Техника "Зеркало"</h3>
+                        <div class="quote-box">
+                            <p>Повторяйте последние слова ребёнка с вопросительной интонацией — это показывает, что вы слушаете и понимаете его.</p>
+                        </div>
+                        
+                        <h3>Организационный период</h3>
+                        <p>Самый важный момент — первые три дня. Именно тогда закладываются отношения на всю смену:</p>
+                        <ul class="content-list">
+                            <li>День заезда — позитивное первое впечатление</li>
+                            <li>Первая беседа — объяснение правил</li>
+                            <li>Первое мероприятие — показать себя с лучшей стороны</li>
+                            <li>Вечерняя свечка — налаживание личных отношений</li>
+                        </ul>
+                        
+                        <h3>Первый день: чек-лист вожатого</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Утро</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Подготовка комнаты<br>• Проверка инвентаря<br>• Повторение имён детей<br>• Позитивный настрой</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Встреча детей</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Тёплая улыбка<br>• Обращение по имени<br>• Помощь с вещами<br>• Знакомство с родителями</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>День</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Экскурсия по лагерю<br>• Знакомство с территорией<br>• Первая игра на знакомство<br>• Обед — быть рядом</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Вечер</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Ужин<br>• Первая свеча<br>• Знакомство с правилами<br>• Подготовка ко сну</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quote-box">
+                            <p>"Не стремитесь завоевать любовь детей. Стремитесь завоевать уважение."</p>
+                        </div>
+                        
+                        <h3>Как реагировать на конфликты</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Алгоритм:</h4>
+                                <p>1. Остановите конфликт<br>
+                                2. Отойдите в сторону<br>
+                                3. Спросите: "Что произошло?"<br>
+                                4. Выслушайте обе стороны<br>
+                                5. Предложите решение<br>
+                                6. Проконтролируйте примирение</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Что такое «дешёвый авторитет»?",
+                            options: ["Быть слишком строгим", "Быть «своим» и всё разрешать", "Быть справедливым"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько дней важны для закладки отношений?",
+                            options: ["Первый день", "Три дня", "Вся смена"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как правильно давать указания?",
+                            options: ["Кричать для громкости", "Короткие чёткие фразы", "Много раз повторять"],
+                            correct: 1
+                        },
+                        {
+                            question: "Чему нужно стремиться в работе с детьми?",
+                            options: ["Завоевать любовь", "Завоевать уважение", "Избегать конфликтов"],
+                            correct: 1
+                        },
+                        {
+                            question: "Почему нельзя кричать на детей?",
+                            options: ["Это неэффективно", "Это показывает неуверенность", "Дети не поймут"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как критиковать ребёнка?",
+                            options: ["При всех", "Наедине", "Через родителей"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно в первый день?",
+                            options: ["Установить правила", "Произвести позитивное впечатление", "Провести тестирование"],
+                            correct: 1
+                        },
+                        {
+                            question: "Если ребёнок вас не слушает, нужно...",
+                            options: ["Крикнуть", "Найти причину и подход", "Пожаловаться старшему"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Командобразование",
+                    icon: "🤝",
+                    content: `
+                        <h2>Как создать команду из отряда?</h2>
+                        
+                        <p>Хорошая атмосфера — основа успеха. По данным опросов, 88% детей едут в лагерь ради атмосферы!</p>
+                        
+                        <h3>Этапы формирования коллектива</h3>
+                        <ol class="numbered-list">
+                            <li>Знакомство</li>
+                            <li>Снятие психологических барьеров</li>
+                            <li>Осознание своего места в коллективе</li>
+                            <li>Достижение результата совместной деятельностью</li>
+                            <li>Ощущение необходимости своего присутствия для коллектива</li>
+                        </ol>
+                        
+                        <h3>Методы командного сплочения</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🎯</div><h4>Ставьте цель</h4><p>"Мы — одна семья!"</p></div>
+                            <div class="card"><div class="icon">🤝</div><h4>Командные игры</h4><p>Веревочный курс, совместные дела</p></div>
+                            <div class="card"><div class="icon">✨</div><h4>Традиции</h4><p>Свои кричалки, приветствия</p></div>
+                            <div class="card"><div class="icon">🏆</div><h4>Ситуации успеха</h4><p>Подчёркивайте достижения</p></div>
+                        </div>
+                        
+                        <h3>Создание традиций отряда</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Приветствие</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Придумайте особенное приветствие отряда: кричалка, жест, песня. Используйте каждое утро.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Название отряда</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Дайте название вместе с детьми. Можно выбрать животное, стихию, героя — главное, чтобы все участвовали в выборе.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Отрядный герб</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Создайте общий герб, флаг, эмблему. Каждый может внести свой элемент.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Традиционная песня</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Выберите или сочините песню, которую поёт только ваш отряд.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Практические советы</h3>
+                        <ul class="content-list">
+                            <li>Говорите "мы", а не "я" или "ты"</li>
+                            <li>Не допускайте изоляции детей</li>
+                            <li>Препятствуйте образованию замкнутых групп</li>
+                            <li>Вовлекайте всех в общественные дела</li>
+                            <li>Давайте каждому проявить себя</li>
+                            <li>Создавайте ситуации значимости</li>
+                            <li>Вместе радуйтесь и обсуждайте неудачи</li>
+                            <li>Проводите время с каждым ребёнком</li>
+                        </ul>
+                        
+                        <h3>Роли в команде</h3>
+                        <div class="info-box">
+                            <p><strong>Лидер</strong> — координирует, направляет<br>
+                            <strong>Творец</strong> — придумывает идеи<br>
+                            <strong>Исполнитель</strong> — делает дело<br>
+                            <strong>Поддержка</strong> — помогает другим<br>
+                            <strong>Аналитик</strong> — оценивает ситуацию</p>
+                        </div>
+                        
+                        <h3>Разделение на группы</h3>
+                        <div class="info-box">
+                            <p>Не делите случайно ("мальчики против девочек"). Используйте жребий, считалки или поинтересуйтесь у детей, кто с кем хочет быть.</p>
+                        </div>
+                        
+                        <h3>Как работать с "изгоями"</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Алгоритм:</h4>
+                                <p>1. Выявите ребёнка, который ни с кем не общается<br>
+                                2. Назначьте ему "напарника" — доброго, активного ребёнка<br>
+                                3. Дайте ему роль в команде (даже маленькую)<br>
+                                4. Публично хвалите за любой вклад<br>
+                                5. Не оставляйте его одного во время активностей</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Создание "чувства локтя"</h3>
+                        <div class="quote-box">
+                            <p>"Когда один плачет — плачем всей командой. Когда один победил — победила вся команда."</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Лучший девиз</h4>
+                                <p>"Один за всех и все за одного!" — именно это создаёт настоящую команду.</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Сколько детей едет в лагерь ради атмосферы?",
+                            options: ["50%", "88%", "30%"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что нужно делать с замкнутыми группами?",
+                            options: ["Разрешать", "Препятствовать", "Не замечать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какой девиз создаёт настоящую команду?",
+                            options: ["Каждый сам за себя", "Один за всех и все за одного", "Победа любой ценой"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как делить детей на группы?",
+                            options: ["Случайно", "С учётом пожеланий", "По возрасту"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важнее всего для командного духа?",
+                            options: ["Конкуренция", "Совместные дела и поддержка", "Дисциплина"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что такое «изгой» в отряде?",
+                            options: ["Тот кто нарушает правила", "Ребёнок без друзей", "Тот кто всех подчиняет"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как создать традиции отряда?",
+                            options: ["Вожатый решает сам", "Вместе с детьми", "По примеру прошлых лет"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько этапов формирования коллектива?",
+                            options: ["3", "5", "7"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Правила и законы",
+                    icon: "📜",
+                    content: `
+                        <h2>Правила и законы в отряде</h2>
+                        
+                        <p>Правила — не ограничение, а рамки безопасности и комфорта для всех.</p>
+                        
+                        <h3>Эффективный подход к правилам</h3>
+                        <ol class="numbered-list">
+                            <li>Не начинайте с нудной лекции!</li>
+                            <li>Предложите детям самим составить "Свод правил"</li>
+                            <li>Они назовут основные правила, включая смешные</li>
+                            <li>Немного подправьте их формулировки</li>
+                            <li>Зачитайте вместе составленный свод правил</li>
+                            <li>Повесьте правила на видное место</li>
+                        </ol>
+                        
+                        <div class="warning-box">
+                            <div class="icon">🚨</div>
+                            <div>
+                                <h4>Основные правила (нарушение = вывоз из лагеря)</h4>
+                                <p>• Соблюдение режима<br>• Уважение к другим<br>• Запрет на выход за территорию<br>• Запрет алкоголя, наркотиков, курения</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Правила поведения в отряде</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">⏰</div><h4>Режим</h4><p>Подъём, зарядка, сон — всё по времени</p></div>
+                            <div class="card"><div class="icon">🍽️</div><h4>Питание</h4><p>Все вместе, не уходить раньше</p></div>
+                            <div class="card"><div class="icon">🧹</div><h4>Чистота</h4><p>Убираем за собой</p></div>
+                            <div class="card"><div class="icon">🤝</div><h4>Общение</h4><p>Говорим вежливо</p></div>
+                        </div>
+                        
+                        <h3>Законы отряда</h3>
+                        <ul class="content-list">
+                            <li><strong>Закон Человека</strong> — уважаем достоинство каждого</li>
+                            <li><strong>Закон Точности</strong> — точны во времени и словах</li>
+                            <li><strong>Закон Поднятой руки</strong> — право говорить важное</li>
+                            <li><strong>Закон Доброго слова</strong> — помогаем друг другу</li>
+                            <li><strong>Закон Тайны</strong> — сказанное на свече — тайна</li>
+                        </ul>
+                        
+                        <h3>Легенда о законе поднятой руки</h3>
+                        <div class="quote-box">
+                            <p>"Давным-давно враждовали два племени. Чтобы предложить мир, один мудрец вытянул правую руку вперёд. Если предложение недостойно — стреляйте, но выслушайте! Так родился закон правой руки."</p>
+                        </div>
+                        
+                        <h3>Как добиться выполнения правил</h3>
+                        <div class="info-box">
+                            <p>Дети лучше выполняют правила, если считают, что сами их придумали. Не навязывайте — предлагайте!</p>
+                        </div>
+                        
+                        <h3>Система поощрений и наказаний</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Поощрения</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Похвала при всех<br>• Звездочки/баллы<br>• Выбор активности<br>• Маленький подарок<br>• Особое поручение</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Наказания</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Устное замечание<br>• Разговор наедине<br>• Временное ограничение<br>• Общественное извинение<br>• Лишение привилегий</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Чего НЕЛЬЗЯ</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Физические наказания<br>• Оскорбления<br>• Унижение при всех<br>• Задержка еды<br>• Изоляция от группы</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Принципы наказания</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <p>1. Наказывайте за проступок, не за личность<br>
+                                2. Наказание должно быть справедливым<br>
+                                3. Объясните, за что наказываете<br>
+                                4. Дайте шанс исправиться<br>
+                                5. Не наказывайте в гневе</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Режим дня в лагере</h3>
+                        <div class="info-box">
+                            <p>07:00 — Подъём<br>
+                            07:30 — Зарядка<br>
+                            08:00 — Утренний осмотр<br>
+                            08:30 — Завтрак<br>
+                            09:00 — Линейка<br>
+                            09:30-13:00 — Мероприятия<br>
+                            13:00 — Обед<br>
+                            13:30-15:30 — Тихий час<br>
+                            15:30 — Полдник<br>
+                            16:00-18:30 — Мероприятия<br>
+                            19:00 — Ужин<br>
+                            19:30-21:00 — Вечерние мероприятия<br>
+                            21:00 — Вечерняя свеча<br>
+                            21:30 — Подготовка ко сну<br>
+                            22:00 — Отбой</p>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Как лучше вводить правила?",
+                            options: ["Прочитать лекцию", "Предложить детям составить самим", "Написать на бумаге"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что нарушать нельзя ни в коем случае?",
+                            options: ["Опоздания", "Выход за территорию", "Шум вечером"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что означает «Закон Поднятой руки»?",
+                            options: ["Нельзя поднимать руку на детей", "Право говорить важное", "Приветствие"],
+                            correct: 1
+                        },
+                        {
+                            question: "Почему дети лучше выполняют свои правила?",
+                            options: ["Боятся наказания", "Считают их своими", "Так велели"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько основных правил должно быть?",
+                            options: ["Много", "3-5", "Неограниченно"],
+                            correct: 1
+                        },
+                        {
+                            question: "Чего НЕЛЬЗЯ делать при наказании?",
+                            options: ["Объяснять", "Унижать", "Быть справедливым"],
+                            correct: 1
+                        },
+                        {
+                            question: "Во сколько отбой для младших?",
+                            options: ["20:00", "21:00", "22:00"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что делать если ребёнок нарушил правило?",
+                            options: ["Крикнуть", "Объяснить и дать шанс", "Отправить домой"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "Игры на знакомство",
+                    icon: "🎮",
+                    content: `
+                        <h2>Игры на знакомство</h2>
+                        
+                        <p>Первые игры определяют, как дети будут относиться друг к другу всю смену.</p>
+                        
+                        <h3>Простые и эффективные игры</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">❄️</div><h4>Снежный ком</h4><p>Первый — имя, второй — все предыдущие + своё</p></div>
+                            <div class="card"><div class="icon">🍎</div><h4>Яблочко</h4><p>Катаем яблоко, называем имя и что любим</p></div>
+                            <div class="card"><div class="icon">✋</div><h4>Рукопожатие</h4><p>Иду по ряду, жму руку и называю имя</p></div>
+                            <div class="card"><div class="icon">🎨</div><h4>Портрет</h4><p>Рисуем друг друга, угадываем чей портрет</p></div>
+                            <div class="card"><div class="icon">👋</div><h4>Ласковое имя</h4><p>Называем только ласковые имена</p></div>
+                            <div class="card"><div class="icon">🔍</div><h4>Найди сходство</h4><p>Обнаружить 3 общие черты с незнакомцем</p></div>
+                        </div>
+                        
+                        <h3>Больше игр на знакомство</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>1. Говорилки</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Участники разбиваются на пары. Задают друг другу вопросы из списка: "Что ты любишь?", "О чём мечтаешь?", "Какой твой любимый фильм?". Через 3 минуты — знакомство с парой перед всеми.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>2. Ассоциации</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый говорит слово, которое ассоциируется с его именем. Например: "Аня — ананас". Следующий должен вспомнить всех предыдущих.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>3. Жесты</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый придумывает жест для своего имени и показывает его. Остальные повторяют. Потом все вместе показывают жест того, чьё имя называют.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>4. ИнтерВью</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый берёт интервью у соседа: "Как зовут?", "Сколько лет?", "Что любишь делать?". Потом представляют друг друга.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>5. Реклама</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Нужно представить себя как товар: "Покупайте меня! Я умею...". Говорят по очереди, остальные аплодируют.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>6. Почтальон</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Ведущий — почтальон. Читает "письма": "Есть письмо для того, кто любит танцевать!" Те, кто любит, встают и представляются.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>7. Зоопарк</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый выбирает животное и показывает его пантомимой. Находят "стаю" — тех, кто выбрал такое же животное.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>8. Танец-знакомство</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Под музыку все танцуют. Когда музыка останавливается — нужно познакомиться с ближайшим человеком: пожать руку, назвать имя.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Правила успешной игры на знакомство</h3>
+                        <ol class="numbered-list">
+                            <li>Начинайте с простого</li>
+                            <li>Подавайте личный пример</li>
+                            <li>Хвалите участников</li>
+                            <li>Не затягивайте — переходите к следующей</li>
+                            <li>Завершайте на позитиве</li>
+                        </ol>
+                        
+                        <h3>Игра "Комплимент"</h3>
+                        <div class="info-box">
+                            <p>Все садятся в круг. Каждый по очереди делает комплимент соседу справа. Можно говорить о внешности, характере, поступках.</p>
+                        </div>
+                        
+                        <h3>Игра "Тезки"</h3>
+                        <div class="quote-box">
+                            <p>Ведущий произносит имя. Люди с этим именем делают шаг вперёд. Если таких несколько — все аплодируют. Если только один — ему говорят комплименты на первую букву имени.</p>
+                        </div>
+                        
+                        <h3>Советы вожатому</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <p>1. Заранее подготовьте список игр<br>
+                                2. Имейте запасные варианты<br>
+                                3. Адаптируйте игры под возраст<br>
+                                4. Будьте готовы к тишине — это нормально<br>
+                                5. Не бойтесь пауз</p>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Главный принцип</h4>
+                                <p>Доброжелательность и позитив — основа всех игр на знакомство!</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Какой принцип в основе игр на знакомство?",
+                            options: ["Соревнование", "Доброжелательность", "Выявление лидеров"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как играть в «Снежный ком»?",
+                            options: ["Случайные имена", "Называть всех по порядку", "Накопительно"],
+                            correct: 2
+                        },
+                        {
+                            question: "Сколько должна длиться одна игра?",
+                            options: ["Пока все не устанут", "Не затягивать, переходить к следующей", "Ровно 5 минут"],
+                            correct: 1
+                        },
+                        {
+                            question: "Кто должен подавать пример?",
+                            options: ["Самый активный ребёнок", "Вожатый", "Старшие дети"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать, если ребёнок стесняется?",
+                            options: ["Заставить участвовать", "Не давить, но предложить", "Пропустить"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что такое «Зоопарк»?",
+                            options: ["Игра с животными", "Пантомима с выбором животного", "Конкурс фотографий"],
+                            correct: 1
+                        },
+                        {
+                            question: "Почему важно иметь запасные игры?",
+                            options: ["Чтобы было интереснее", "Не все игры работают с разными группами", "Для разнообразия"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как играть в «Почтальон»?",
+                            options: ["Разносить письма", "Отвечать на критерии ведущего", "Писать письма"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "Игры на сплочение",
+                    icon: "🔥",
+                    content: `
+                        <h2>Игры на сплочение</h2>
+                        
+                        <p>Эти игры учат работать в команде, доверять друг другу и действовать сообща.</p>
+                        
+                        <h3>Классика командного сплочения</h3>
+                        <ol class="numbered-list">
+                            <li><strong>Узелки</strong> — распутаться, не разъединяя рук</li>
+                            <li><strong>Маленькие зелёные человечки</strong> — сбиться в кучку, защитив слабых</li>
+                            <li><strong>Бревно</strong> — всем вместе встать на бревно и поменяться местами</li>
+                            <li><strong>Слепой треугольник</strong> — с закрытыми глазами образовать фигуру</li>
+                            <li><strong>Клад</strong> — разделить 1000 монет между командой</li>
+                        </ol>
+                        
+                        <h3>Больше игр на сплочение</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>1. Паутина</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Участники встают в круг. Один кидает клубок, называя того, кому кидает, и говоря что-то хорошее о нём. Так создаётся "паутина". Потом — обратно, не разрывая.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>2. Танграм на скорость</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Команде даётся схема фигуры из геометрических фигур. Задача — собрать фигуру вместе. Обсуждают, кто что делает.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>3. Слепой лабиринт</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Участники с завязанными глазами должны пройти "лабиринт", где их ведут по голосу другие члены команды.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>4. Мост из бумаги</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Команда должна построить мост из одного листа бумаги, который выдержит груз. Можно рвать, складывать, но нельзя использовать ничего кроме бумаги.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>5. Общий рисунок</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Все стоят вокруг листа. Каждый рисует по очереди одну деталь, не видя, что нарисовали другие. Потом вместе решают, что получилось.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>6. Фабрика</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Команда — фабрика. Каждый — станок. Нужно "произвести" что-то (например, самолётики). Один диктует темп, все работают синхронно.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>7. Гонка на десятку</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Команда должна выполнить 10 заданий как можно быстрее: прыгнуть 10 раз, назвать 10 имён, сделать 10 приседаний — ВСЕ вместе.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>8. Танец с мячом</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Все держат мяч вместе, не используя рук. Нужно станцевать и не уронить мяч. Учит координировать движения.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Игра "Машина"</h3>
+                        <div class="quote-box">
+                            <p>"Постройте любой действующий механизм! 10 минут, не произнося ни слова. Затем представьте модель."</p>
+                            <p>После — обсуждение: как это отражает работу в команде?</p>
+                        </div>
+                        
+                        <h3>Игра "Веревочный курс"</h3>
+                        <ul class="content-list">
+                            <li>Все участники — на одной верёвке</li>
+                            <li>Нужно перебраться через "болото" (обруч)</li>
+                            <li>Если верёвка касается пола — все начинают сначала</li>
+                            <li>Учит координировать действия</li>
+                        </ul>
+                        
+                        <h3>Игра "Переправа"</h3>
+                        <div class="info-box">
+                            <p>Задача: переправить всю команду через "реку" (пространство между двумя линиями), используя ограниченное количество "камней" (листов бумаги). Нельзя наступать на землю!</p>
+                        </div>
+                        
+                        <h3>Игра "Люди к людям"</h3>
+                        <div class="quote-box">
+                            <p>Участники в парах. Ведущий выкрикивает части тела (локоть к колену, ухо к спине). Затем: "Люди к людям!" — все ищут нового партнёра.</p>
+                        </div>
+                        
+                        <h3>Вечерние игры у костра</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🔦</div><h4>Фонарик</h4><p>В темноте искать спрятанный предмет</p></div>
+                            <div class="card"><div class="icon">👻</div><h4>Страшилки</h4><p>Рассказывать по очереди страшные истории</p></div>
+                            <div class="card"><div class="icon">🌟</div><h4>Гадание</h4><p>Гадания на свече</p></div>
+                            <div class="card"><div class="icon">🎭</div><h4>Пантомима</h4><p>Показывать без слов</p></div>
+                        </div>
+                        
+                        <h3>Подвижные игры</h3>
+                        <div class="warning-box">
+                            <div class="icon">⚽</div>
+                            <div>
+                                <p><strong>Вышибалы</strong> — классика<br>
+                                <strong>Прятки</strong> — с фонариком ночью<br>
+                                <strong>Боулинг</strong> — пластиковыми бутылками<br>
+                                <strong>Эстафеты</strong> — любые<br>
+                                <strong>Фортбо</br>>— командный мяч</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">⚠️</div>
+                            <div>
+                                <h4>Важно</h4>
+                                <p>После каждой игры — обязательно обсуждение (рефлексия): что получилось, что нет, как можно сделать лучше.</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Чему учат игры на сплочение?",
+                            options: ["Индивидуальным достижениям", "Командной работе", "Соревнованию"],
+                            correct: 1
+                        },
+                        {
+                            question: "О чём важно помнить после игры?",
+                            options: ["Ни о чём", "Рефлексия", "Награда победителям"],
+                            correct: 1
+                        },
+                        {
+                            question: "В чём суть «Узелков»?",
+                            options: ["Связать всех верёвкой", "Распутаться не разъединяя рук", "Запутать друг друга"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что развивает «Веревочный курс»?",
+                            options: ["Скорость", "Координацию и доверие", "Ловкость"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько человек нужно для командных игр?",
+                            options: ["Минимум 2", "Минимум 5-6", "Любое количество"],
+                            correct: 2
+                        },
+                        {
+                            question: "В чём суть «Паутины»?",
+                            options: ["Ловить насекомых", "Создавать связь через комплименты", "Плести узоры"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что такое «Гонка на десятку»?",
+                            options: ["Бегать 10 км", "Выполнить 10 заданий вместе", "Прыгать 10 раз"],
+                            correct: 1
+                        },
+                        {
+                            question: "Зачем нужна рефлексия после игры?",
+                            options: ["Чтобы похвалить победителей", "Чтобы понять что получилось и как улучшить", "Чтобы отдохнуть"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    title: "Вечерняя свеча",
+                    icon: "🕯️",
+                    content: `
+                        <h2>Вечерняя свеча</h2>
+                        
+                        <p>Это один из самых важных ритуалов в лагере. Момент искренности и сплочения.</p>
+                        
+                        <h3>Цели вечерней свечи</h3>
+                        <ul class="content-list">
+                            <li>Анализ прошедшего дня</li>
+                            <li>Эмоциональная поддержка</li>
+                            <li>Сплочение отряда</li>
+                            <li>Выявление проблем</li>
+                            <li>Планирование завтрашнего дня</li>
+                        </ul>
+                        
+                        <h3>Правила свечи</h3>
+                        <div class="info-box">
+                            <p>✅ Когда говорит один — все молчат<br>✅ Никого не осуждаем<br>✅ Нет плохих людей — есть плохие поступки<br>✅ Сказанное не выносится за пределы<br>✅ Все на одном уровне вокруг огня</p>
+                        </div>
+                        
+                        <h3>Подготовка к свече</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🕯️</div><h4>Свеча</h4><p>Красивая, большая</p></div>
+                            <div class="card"><div class="icon">🪑</div><h4>Место</h4><p>Удобное, уютное</p></div>
+                            <div class="card"><div class="icon">🎵</div><h4>Музыка</h4><p>Спокойная, тихая</p></div>
+                            <div class="card"><div class="icon">🌙</div><h4>Атмосфера</h4><p>Тёмно, таинственно</p></div>
+                        </div>
+                        
+                        <h3>Формы проведения</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>1. Белые и чёрные камни</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Дети приносят камни, найденные за день. Чёрные — плохое, белые — хорошее. Рассказывают истории.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>2. Паутина (Нитки)</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Все берутся за нить, передавая её. Если нить рвётся — страдает вся паутина. Говорят, за что благодарны.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>3. Спасибо</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый говорит "Спасибо" одному человеку, объясняя за что.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>4. Прогноз погоды</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Дети показывают (словом или жестом) своё настроение/состояние души. Например: "солнечно", "облачно", "дождь".</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>5. Шляпа</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Вопросы анонимно кладут в шляпу, потом тянут и отвечают. Можно отвечать или передавать.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>6. Три вещи</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый называет три вещи: что понравилось, что не понравилось, что хотелось бы завтра.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>7. Круг комплиментов</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Один встаёт в центр, остальные по кругу говорят ему комплименты.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>8. Исповедь</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Можно рассказать что-то, что давно хотелось рассказать. Никто не перебивает.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>9. Секрет</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Каждый говорит.secret (по секрету) — что-то тихо на ухо соседу. Потом все вместе решают, рассказать или нет.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>10. Желание</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Загадываем желание на следующий день. Можно даже писать желания на бумажках и класть под свечу.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Легенда об огоньке</h3>
+                        <div class="quote-box">
+                            <p>"Один отряд каждый вечер ходил в лес, сидел у костра и говорил о важном. Они стали самыми дружными. А их традиция зажигать огонёк сохранилась..."</p>
+                        </div>
+                        
+                        <h3>Как проводить первую свечу</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <p>1. Зажгите свечу сами<br>
+                                2. Расскажите что-то о себе<br>
+                                3. Будьте искренни<br>
+                                4. Не давите на детей<br>
+                                5. Начните с тех, кто активен</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Если ребёнок плачет</h3>
+                        <div class="info-box">
+                            <p>Это нормально! Не нужно останавливать. Дайте выплакаться. Можно обнять. После — поблагодарите за доверие.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Первая свеча</h4>
+                                <p>Проводите вы — покажите детям пример искренности и открытости.</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Какого правила НЕТ на свече?",
+                            options: ["Молчать когда говорит один", "Не осуждать", "Можно рассказывать всем"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что показывает «Прогноз погоды»?",
+                            options: ["Погоду на завтра", "Настроение участника", "Температуру в комнате"],
+                            correct: 1
+                        },
+                        {
+                            question: "Почему «Нитки» так называются?",
+                            options: ["Нужно связать всех", "Передаём нить — связываем", "Потому что мудрые"],
+                            correct: 1
+                        },
+                        {
+                            question: "Кто проводит первую свечу?",
+                            options: ["Старшие дети", "Вожатые", "Никто"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно после свечи?",
+                            options: ["Сразу разойтись", "Ничего", "Следовать договорённостям"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что делать если ребёнок плачет на свече?",
+                            options: ["Остановить", "Дать выплакаться, поддержать", "Отправить спать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько форм проведения свечи существует?",
+                            options: ["3", "5", "Более 10"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что нужно для атмосферы свечи?",
+                            options: ["Яркий свет", "Темнота и тихая музыка", "Громкие разговоры"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    title: "Первая помощь",
+                    icon: "🩹",
+                    content: `
+                        <h2>Первая доврачебная помощь</h2>
+                        
+                        <p>Вожатый должен уметь оказать первую помощь до прихода медика.</p>
+                        
+                        <div class="warning-box">
+                            <div class="icon">🚨</div>
+                            <div>
+                                <h4>Главное правило</h4>
+                                <p>Не паникуйте! Не суетитесь. Говорите спокойно. При любом сомнении — к врачу!</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Аптечка вожатого</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🩹</div><h4>Перевязочные</h4><p>Бинты, пластыри, вата</p></div>
+                            <div class="card"><div class="icon">🧴</div><h4>Антисептики</h4><p>Перекись, зелёнка, йод</p></div>
+                            <div class="card"><div class="icon">💊</div><h4>Лекарства</h4><p>Обезболивающее, сорбенты</p></div>
+                            <div class="card"><div class="icon">🌡️</div><h4>Инструменты</h4><p>Термометр, пинцет, ножницы</p></div>
+                        </div>
+                        
+                        <h3>Топ-10 частых случаев в лагере</h3>
+                        <ol class="numbered-list">
+                            <li><strong>Порезы</strong> → промыть, обработать перекисью, наложить пластырь</li>
+                            <li><strong>Носовое кровотечение</strong> → посадить, на переносицу лёд, голову наклонить вперёд</li>
+                            <li><strong>Солнечный удар</strong> → в тень, холодный компресс, пить воду</li>
+                            <li><strong>Укусы насекомых</strong> → холодный компресс, при аллергии — срочно к врачу</li>
+                            <li><strong>Отравление</strong> → НЕ вызывать рвоту, срочно к врачу</li>
+                            <li><strong>Ушибы</strong> → приложить холод, покой</li>
+                            <li><strong>Ожоги</strong> → холодная вода 10 минут, не мазать маслом</li>
+                            <li><strong>Занозы</strong> → обработать, вытащить пинцетом</li>
+                            <li><strong>Укусы животных</strong> → промыть, к врачу</li>
+                            <li><strong>Тепловой удар</strong> → в тень, прохлада, вода</li>
+                        </ol>
+                        
+                        <h3>Что делать при травме</h3>
+                        <div class="info-box">
+                            <p><strong>Ушиб:</strong> приложить холод, покой<br>
+                            <strong>Растяжение:</strong> зафиксировать, приложить холод<br>
+                            <strong>Вывих:</strong> не вправлять, зафиксировать, к врачу<br>
+                            <strong>Перелом:</strong> не двигать, вызвать врача<br>
+                            <strong>Порез:</strong> промыть, обработать, забинтовать</p>
+                        </div>
+                        
+                        <h3>Алгоритм действий при травме</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Шаг 1: Оцените ситуацию</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Не паникуйте. Определите: что произошло? Насколько серьёзно?</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Шаг 2: Окажите первую помощь</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Используйте аптечку. Следуйте инструкциям для каждого типа травмы.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Шаг 3: Вызовите медика</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Если травма серьёзная — срочно к медику или вызовите его.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Шаг 4: Успокойте ребёнка</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Будьте рядом. Говорите спокойно. Не оставляйте одного.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Солнечный удар</h3>
+                        <ul class="content-list">
+                            <li>Перенести в тень</li>
+                            <li>Приложить холод к голове</li>
+                            <li>Давать пить воду маленькими глотками</li>
+                            <li>При потере сознания — срочно к медику</li>
+                        </ul>
+                        
+                        <h3>Ожоги</h3>
+                        <div class="warning-box">
+                            <div class="icon">⚠️</div>
+                            <div>
+                                <h4>Важно!</h4>
+                                <p>НЕ мазать маслом, сметаной! Только холодная вода 10-15 минут и стерильная повязка.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Укусы клещей</h3>
+                        <div class="warning-box">
+                            <div class="icon">⚠️</div>
+                            <div>
+                                <h4>Важно!</h4>
+                                <p>После каждой прогулки — полный осмотр! Особенно за ушами, на сгибах, в волосах. Клеща НЕ вытаскивать самостоятельно — к врачу!</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Аллергическая реакция</h3>
+                        <div class="quote-box">
+                            <p>При сильной реакции (отёк, затруднённое дыхание) — СРОЧНО к медику! Носите с собой список детей-аллергиков.</p>
+                        </div>
+                        
+                        <h3>Судороги / эпилепсия</h3>
+                        <div class="info-box">
+                            <p>1. Положить на бок<br>
+                            2. Убрать опасные предметы<br>
+                            3. Не класть ничего в рот<br>
+                            4. Вызвать медика<br>
+                            5. Дождаться окончания</p>
+                        </div>
+                        
+                        <h3>Обморок</h3>
+                        <div class="info-box">
+                            <p>1. Положить, приподнять ноги<br>
+                            2. Расстегнуть одежду<br>
+                            3. Обеспечить доступ воздуха<br>
+                            4. Побрызгать водой на лицо<br>
+                            5. Придя в себя — дать воды</p>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Главное правило при оказании помощи?",
+                            options: ["Действовать быстро", "Не паниковать", "Сразу вызвать скорую"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как остановить носовое кровотечение?",
+                            options: ["Запрокинуть голову", "Наклонить вперёд, приложить лёд", "Приложить к затылку"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать при укусе клеща?",
+                            options: ["Вытащить пинцетом", "Помазать маслом", "Срочно к врачу"],
+                            correct: 2
+                        },
+                        {
+                            question: "При солнечном ударе нужно...",
+                            options: ["Дать солёную воду", "Перенести в тень, приложить холод", "Уложить спать"],
+                            correct: 1
+                        },
+                        {
+                            question: "При отравлении нужно...",
+                            options: ["Вызвать рвоту", "Дать активированный уголь", "НЕ вызывать рвоту, к врачу"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что делать при ожоге?",
+                            options: ["Мазь", "Холодная вода", "Лёд сразу"],
+                            correct: 1
+                        },
+                        {
+                            question: "При обмороке нужно...",
+                            options: ["Поднять ноги", "Усадить", "Дать побегать"],
+                            correct: 0
+                        },
+                        {
+                            question: "Что должно быть у вожатого?",
+                            options: ["Список аллергиков", "Свои лекарства", "Медицинский диплом"],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    id: 9,
+                    title: "Безопасность",
+                    icon: "🔒",
+                    content: `
+                        <h2>Безопасность детей в лагере</h2>
+                        
+                        <p>Безопасность — ответственность каждого вожатого.</p>
+                        
+                        <h3>Виды безопасности</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🏃</div><h4>Физическая</h4><p>Безопасное пространство</p></div>
+                            <div class="card"><div class="icon">🧠</div><h4>Психологическая</h4><p>Комфортная среда</p></div>
+                            <div class="card"><div class="icon">🍎</div><h4>Пищевая</h4><p>Контроль питания</p></div>
+                            <div class="card"><div class="icon">🌳</div><h4>Экологическая</h4><p>Безопасная территория</p></div>
+                        </div>
+                        
+                        <h3>10 золотых правил безопасности</h3>
+                        <ol class="numbered-list">
+                            <li><strong>Знайте местонахождение каждого ребёнка</strong></li>
+                            <li><strong>Не оставляйте детей без присмотра</strong></li>
+                            <li><strong>Соблюдайте нормы по количеству детей на вожатого</strong></li>
+                            <li><strong>Имейте при себе аптечку</strong></li>
+                            <li><strong>Знайте телефоны экстренных служб</strong></li>
+                            <li><strong>Проверяйте территорию перед мероприятиями</strong></li>
+                            <li><strong>Следите за погодой</strong></li>
+                            <li><strong>Знайте особенности каждого ребёнка</strong></li>
+                            <li><strong>Имейте план эвакуации</strong></li>
+                            <li><strong>Докладывайте о ЧС старшему вожатому</strong></li>
+                        </ol>
+                        
+                        <h3>Профилактика травм</h3>
+                        <ul class="content-list">
+                            <li>Проверяйте исправность оборудования</li>
+                            <li>Следите за одеждой и обувью детей</li>
+                            <li>Обучайте детей правилам безопасности</li>
+                            <li>Приучайте к аккуратности</li>
+                            <li>Объясняйте правила перед каждым мероприятием</li>
+                        </ul>
+                        
+                        <h3>Безопасность на воде</h3>
+                        <div class="warning-box">
+                            <div class="icon">🏊</div>
+                            <div>
+                                <h4>Строгие правила:</h4>
+                                <p>• Только в присутствии спасателя<br>• Норма глубины соблюдается<br>• Норма количества детей<br>• Всегда на виду<br>• Нельзя нырять<br>• Нельзя шалить</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Безопасность на экскурсиях</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Перед выходом</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Проверить список детей<br>• Взять аптечку и воду<br>• Объяснить правила<br>• Назначить старших</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Во время прогулки</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Идти первым и последним<br>• Периодически проверять всех<br>• Не давать отставать<br>• Следить за погодой</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>При возвращении</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>• Пересчитать детей<br>• Проверить состояние<br>• Доложить старшему</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Профилактика заболеваний</h3>
+                        <div class="info-box">
+                            <p>✅ Мыть руки перед едой<br>✅ Пить только свою воду<br>✅ Не есть немытые продукты<br>✅ При первых симптомах — к врачу<br>✅ Проветривать помещения</p>
+                        </div>
+                        
+                        <h3>Пожарная безопасность</h3>
+                        <ul class="content-list">
+                            <li>Знайте расположение огнетушителей</li>
+                            <li>Знайте план эвакуации</li>
+                            <li>Не допускайте шалостей с огнём</li>
+                            <li>Проверяйте электроприборы</li>
+                            <li>Не оставляйте включённые приборы</li>
+                        </ul>
+                        
+                        <h3>Экстренные телефоны</h3>
+                        <div class="info-box">
+                            <p><strong>101</strong> — Пожарная служба<br>
+                            <strong>102</strong> — Полиция<br>
+                            <strong>103</strong> — Скорая помощь<br>
+                            <strong>112</strong> — Единая экстренная<br>
+                            <strong>Медик лагеря</strong> — ___________<br>
+                            <strong>Администрация</strong> — ___________</p>
+                        </div>
+                        
+                        <h3>Чрезвычайные ситуации</h3>
+                        <div class="warning-box">
+                            <div class="icon">🚨</div>
+                            <div>
+                                <p><strong>Пожар:</strong> Звоните 101, эвакуируйте детей, не паникуйте<br>
+                                <strong>Потерялся ребёнок:</strong> Все на поиски, звоните 102<br>
+                                <strong>Сильная травма:</strong> Скорая 103, сообщите родителям<br>
+                                <strong>Гроза:</strong> Все в укрытие, не под деревья</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Ночное дежурство</h3>
+                        <div class="info-box">
+                            <p>• Не спать во время дежурства<br>• Периодически проверять детей<br>• Быть на связи<br>• Знать, где находится медик</p>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Главное правило безопасности?",
+                            options: ["Знать план эвакуации", "Не оставлять детей без присмотра", "Иметь аптечку"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как проверяться на клещей?",
+                            options: ["Раз в день", "После каждой прогулки", "Раз в неделю"],
+                            correct: 1
+                        },
+                        {
+                            question: "Можно ли купаться без спасателя?",
+                            options: ["Да", "Нет", "Только старшим"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно для пищевой безопасности?",
+                            options: ["Много еды", "Мыть руки", "Всегда есть сладкое"],
+                            correct: 1
+                        },
+                        {
+                            question: "При обнаружении неисправности нужно...",
+                            options: ["Игнорировать", "Сообщить администрации", "Починить самому"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать при пожаре?",
+                            options: ["Спрятаться", "Эвакуироваться и звонить 101", "Потушить самому"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какой телефон для экстренных случаев?",
+                            options: ["911", "112", "004"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно на экскурсии?",
+                            options: ["Идти первым и последним", "Дать детям свободу", "Отдыхать самому"],
+                            correct: 0
+                        }
+                    ]
+                },
+                {
+                    id: 10,
+                    title: "Трудные дети",
+                    icon: "🤔",
+                    content: `
+                        <h2>Работа с трудными детьми</h2>
+                        
+                        <p>Каждый ребёнок — личность. Задача вожатого — найти подход.</p>
+                        
+                        <h3>Типы "трудных" детей</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">😤</div><h4>Лидер-контролёр</h4><p>Хочет руководить всеми</p></div>
+                            <div class="card"><div class="icon">😢</div><h4>Плакса</h4><p>Часто расстраивается</p></div>
+                            <div class="card"><div class="icon">😠</div><h4>Агрессор</h4><p>Конфликтует с другими</p></div>
+                            <div class="card"><div class="icon">🙈</div><h4>Замкнутый</h4><p>Не общается с другими</p></div>
+                            <div class="card"><div class="icon">⚡</div><h4>Гиперактивный</h4><p>Не может сидеть на месте</p></div>
+                            <div class="card"><div class="icon">🎭</div><h4>Шутник</h4><p>Всё превращает в прикол</p></div>
+                        </div>
+                        
+                        <h3>Другие типы</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Обидчивый</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Все воспринимает близко к сердцу. Подход: не критиковать при всех, мягко объяснять, учить не обижаться.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Лентяй</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Ничего не хочет делать. Подход: заинтересовать, дать посильную задачу, похвалить за любой результат.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Врун</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Постоянно обманывает. Подход: не обвинять, показать, что правда лучше, хвалить за честность.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Завистливый</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Завидует другим. Подход: показать его сильные стороны, не сравнивать с другими.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Нытик</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Всегда жалуется. Подход: выслушать, но не потакать, переключить на позитив.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Общие принципы</h3>
+                        <ol class="numbered-list">
+                            <li>Найдите причину поведения</li>
+                            <li>Не реагируйте на провокации</li>
+                            <li>Хвалите за хорошее</li>
+                            <li>Дайте возможность "сохранить лицо"</li>
+                            <li>Работайте индивидуально</li>
+                            <li>Будьте терпеливы</li>
+                            <li>Консультируйтесь со специалистами</li>
+                        </ol>
+                        
+                        <h3>Конкретные ситуации</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ребёнок дерется</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Остановить, отойти в сторону. Спросить: "Что случилось?" Не кричать. Объяснить: "Так нельзя". Предложить способ выражения эмоций.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ребёнок плачет</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Отвести в сторону, дать поплакать. Не стыдить. Спросить: "Расскажи, что случилось?" Выслушать без осуждения.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ребёнок не общается</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Не заставляйте. Мягко вовлекайте в группу. Найдите его интерес и предложите участие в том, что ему по душе.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ребёнок грубит</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Не реагировать на грубость. Спокойно сказать: "Я понимаю, что ты злишься, но так говорить нельзя".</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Ребёнок ворует</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Не обвинять при всех. Поговорить наедине. Вернуть вещь. Понять причину. Объяснить, что так нельзя.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Работа с гиперактивными детьми</h3>
+                        <div class="info-box">
+                            <p>• Давать короткие задания<br>
+                            • Часто менять деятельность<br>
+                            • Давать возможность подвигаться<br>
+                            • Не требовать долго сидеть на месте<br>
+                            • Хвалить за успехи</p>
+                        </div>
+                        
+                        <h3>Работа с замкнутыми детьми</h3>
+                        <div class="info-box">
+                            <p>• Не давить<br>
+                            • Найти единомышленника<br>
+                            • Дать роль "наблюдателя"<br>
+                            • Постепенно вовлекать<br>
+                            • Разговаривать наедине</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <h4>Золотое правило</h4>
+                                <p>Не стыдите при всех! Обращайтесь к ребёнку наедине.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Когда нужна помощь</h3>
+                        <div class="info-box">
+                            <p>Если ребёнок представляет опасность для себя или других, если поведение резко изменилось — обязательно сообщите медику и старшему вожатому!</p>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Как реагировать на провокацию?",
+                            options: ["Кричать в ответ", "Не реагировать", "Оставить без внимания"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать, если ребёнок дерется?",
+                            options: ["Накричать", "Остановить, отойти, спросить", "Отправить домой"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как работать с плаксой?",
+                            options: ["Не замечать", "Дать поплакать, выслушать", "Отругать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно при общении с «трудным» ребёнком?",
+                            options: ["Стыдить при всех", "Хвалить за хорошее", "Игнорировать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Когда нужна помощь специалиста?",
+                            options: ["Никогда", "При опасности для себя/других", "Когда ребёнок грустит"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать если ребёнок ворует?",
+                            options: ["Позвать всех смотреть", "Поговорить наедине", "Наказать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как работать с гиперактивным?",
+                            options: ["Заставлять сидеть", "Давать подвигаться", "Не обращать внимания"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно не делать при всех?",
+                            options: ["Хвалить", "Стыдить", "Объяснять"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 11,
+                    title: "Досуг и мероприятия",
+                    icon: "🎪",
+                    content: `
+                        <h2>Организация досуга и мероприятий</h2>
+                        
+                        <p>Вожатый — это ещё и режиссёр, аниматор, ведущий!</p>
+                        
+                        <h3>Виды мероприятий</h3>
+                        <ul class="content-list">
+                            <li><strong>Утренние</strong> — зарядка, линейка</li>
+                            <li><strong>Дневные</strong> — конкурсы, соревнования, мастер-классы</li>
+                            <li><strong>Вечерние</strong> — дискотека, свечка, концерт</li>
+                            <li><strong>Ночные</strong> — страшишки, посиделки (для старших)</li>
+                        </ul>
+                        
+                        <h3>Принципы организации</h3>
+                        <ol class="numbered-list">
+                            <li>Планируйте заранее</li>
+                            <li>Учитывайте возраст</li>
+                            <li>Вовлекайте детей</li>
+                            <li>Имейте запасной план</li>
+                            <li>Подводите итоги</li>
+                        </ol>
+                        
+                        <h3>Структура мероприятия</h3>
+                        <div class="info-box">
+                            <p><strong>Начало:</strong> заинтересовать, создать настроение<br>
+                            <strong>Основная часть:</strong> главное действие<br>
+                            <strong>Завершение:</strong> подведение итогов, эмоциональный финал</p>
+                        </div>
+                        
+                        <h3>Идеи для мероприятий</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🎭</div><h4>КВН</h4><p>Командная игра</p></div>
+                            <div class="card"><div class="icon">🎤</div><h4>Караоке</h4><p>Пение песен</p></div>
+                            <div class="card"><div class="icon">💃</div><h4>Дискотека</h4><p>Танцы</p></div>
+                            <div class="card"><div class="icon">🔍</div><h4>Квест</h4><p>Поиск сокровищ</p></div>
+                            <div class="card"><div class="icon">🎬</div><h4>Кино</h4><p>Просмотр фильма</p></div>
+                            <div class="card"><div class="icon">🎨</div><h4>Мастер-класс</h4><p>Творчество</p></div>
+                        </div>
+                        
+                        <h3>Больше идей для мероприятий</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Спортивные</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Олимпиада, эстафеты, командные игры, соревнования по плаванию, волейбол, пионербол</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Творческие</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Конкурс рисунков, поделок, спектакль, танец, песня, показ мод</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Интеллектуальные</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Викторина, интеллектуальная игра, "Что? Где? Когда?", брейн-ринг</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Развлекательные</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Шоу талантов, конкурс красоты, игра в мафию, твистер, линолеум</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Тематические дни</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>День пиратов, день супергероев, день космоса, день театра, день воды</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Как провести квест</h3>
+                        <div class="info-box">
+                            <p>1. Придумайте сюжет<br>
+                            2. Поделите на станции<br>
+                            3. Придумайте задания<br>
+                            4. Спрячьте подсказки<br>
+                            5. Подготовьте призы<br>
+                            6. Проведите!</p>
+                        </div>
+                        
+                        <h3>Что делать, если погода плохая?</h3>
+                        <div class="quote-box">
+                            <p>Подготовьте заранее список игр в помещении: настольные игры, КВН, чтение, фильмы, конкурсы, викторины. Лучше иметь 2-3 запасных варианта!</p>
+                        </div>
+                        
+                        <h3>Как вести мероприятие</h3>
+                        <div class="warning-box">
+                            <div class="icon">🎤</div>
+                            <div>
+                                <p>• Говорите громко и чётко<br>
+                                • Будьте энергичны<br>
+                                • Следите за временем<br>
+                                • Вовлекайте всех<br>
+                                • Имейте план Б<br>
+                                • Завершайте на пике</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Принцип "Звезды"</h3>
+                        <div class="info-box">
+                            <p>Каждый ребёнок — звезда! Дайте каждому возможность проявить себя: станцевать, спеть, показать фокус, рассказать историю.</p>
+                        </div>
+                        
+                        <h3>Ошибки при проведении мероприятий</h3>
+                        <div class="warning-box">
+                            <div class="icon">🚫</div>
+                            <div>
+                                <p>• Не продумали запасной план<br>
+                                • Не учли возраст<br>
+                                • Вовлекаете не всех<br>
+                                • Затягиваете время<br>
+                                • Нет эмоционального финала<br>
+                                • Не подводите итоги</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Сколько планов должно быть у вожатого?",
+                            options: ["Один", "Два (основной и запасной)", "Три"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно учитывать при планировании?",
+                            options: ["Только погоду", "Возраст детей", "Свои предпочтения"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какой принцип «звезды»?",
+                            options: ["Одна звезда — один победитель", "Каждый ребёнок — звезда", "Звёздный рейтинг"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать при плохой погоде?",
+                            options: ["Отменить мероприятие", "Провести в помещении", "Перенести на завтра"],
+                            correct: 1
+                        },
+                        {
+                            question: "Зачем подводить итоги?",
+                            options: ["Чтобы похвастаться", "Для закрепления эмоций", "Это необязательно"],
+                            correct: 1
+                        },
+                        {
+                            question: "Сколько этапов в мероприятии?",
+                            options: ["1", "2", "3"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что важно при проведении квеста?",
+                            options: ["Много призов", "Хороший сюжет и станции", "Длинные задания"],
+                            correct: 1
+                        },
+                        {
+                            question: "Какая главная ошибка вожатого?",
+                            options: ["Быть слишком активным", "Не иметь запасного плана", "Много говорить"],
+                            correct: 1
+                        }
+                    ]
+                },
+                {
+                    id: 12,
+                    title: "Работа с родителями",
+                    icon: "👨‍👩‍👧",
+                    content: `
+                        <h2>Работа с родителями</h2>
+                        
+                        <p>Родители — партнёры. От качества общения зависит успех смены.</p>
+                        
+                        <h3>Этапы взаимодействия</h3>
+                        <ol class="numbered-list">
+                            <li><strong>До заезда:</strong> сбор информации, ответы на вопросы</li>
+                            <li><strong>В день заезда:</strong> приём, знакомство, передача информации</li>
+                            <li><strong>Во время смены:</strong> регулярные сообщения, фото</li>
+                            <li><strong>В день отъезда:</strong> итоги, рекомендации</li>
+                        </ol>
+                        
+                        <h3>Анкета для родителей</h3>
+                        <div class="info-box">
+                            <p>• ФИО ребёнка и дата рождения<br>
+                            • Аллергии (пищевые, лекарственные)<br>
+                            • Хронические заболевания<br>
+                            • Принимаемые лекарства<br>
+                            • Особенности питания<br>
+                            • Контактный телефон<br>
+                            • С кем дружит/конфликтует<br>
+                            • Что любит/не любит<br>
+                            • Страхи, привычки<br>
+                            • Опыт лагерей</p>
+                        </div>
+                        
+                        <h3>Что нужно узнать от родителей</h3>
+                        <div class="cards-grid">
+                            <div class="card"><div class="icon">🏥</div><h4>Здоровье</h4><p>Аллергии, хронические заболевания</p></div>
+                            <div class="card"><div class="icon">💊</div><h4>Лекарства</h4><p>Приём по времени</p></div>
+                            <div class="card"><div class="icon">🍽️</div><h4>Питание</h4><p>Диеты, ограничения</p></div>
+                            <div class="card"><div class="icon">👫</div><h4>Общение</h4><p>С кем дружит, конфликты</p></div>
+                        </div>
+                        
+                        <h3>Как общаться с родителями</h3>
+                        <ul class="content-list">
+                            <li>Будьте вежливы и профессиональны</li>
+                            <li>Отвечайте оперативно</li>
+                            <li>Сообщайте только позитивные новости</li>
+                            <li>При проблемах — сразу говорите, как решаете</li>
+                            <li>Не обсуждайте других детей</li>
+                            <li>Фотографируйте — родители это ценят</li>
+                        </ul>
+                        
+                        <h3>Канал связи</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Чаты</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Создайте чат отряда для общих новостей. Выкладывайте фото, рассказывайте о мероприятиях.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Индивидуальные сообщения</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Для особых вопросов — личные сообщения. Особенно если есть проблемы.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>Звонки</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>По договорённости с администрацией. Лучше вечером, когда дети заняты.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Частые вопросы родителей</h3>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>"Как мой ребёнок?"</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Расскажите конкретно: как ест, с кем дружит, чем занимается. Пример: "Отлично! Сегодня был на плавании, подружился с Петей!"</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>"Почему не звонит?"</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>Объясните режим: "У нас насыщенная программа, дети очень заняты. Но вечером можете созвониться!"</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>"Можно забрать на один день?"</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>По правилам лагеря — нет, только в родительский день. Или по согласованию с администрацией.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>"Почему не на фото?"</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>"Фотографируем всех, но иногда кто-то не попадает в кадр. Сегодня обязательно сфотографируем!"</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <span>"Что с едой?"</span>
+                                    <span class="accordion-toggle">+</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <p>"Кормят вкусно, дети едят с аппетитом. Ваш ребёнок особенно любит..."</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <div class="icon">⚠️</div>
+                            <div>
+                                <h4>Важно!</h4>
+                                <p>Никогда не делитесь с родителями: диагнозами других детей, конфликтами между детьми, проблемами конкретных семей.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Что делать, если ребёнок заболел</h3>
+                        <div class="info-box">
+                            <p>1. Сообщить медику<br>
+                            2. Связаться с родителями<br>
+                            3. Успокоить ребёнка<br>
+                            4. Обеспечить уход<br>
+                            5. Следовать указаниям медика</p>
+                        </div>
+                        
+                        <h3>После смены</h3>
+                        <div class="info-box">
+                            <p>Всегда — краткий итог: что понравилось, достижения, рекомендации на будущее. Это формирует лояльность и желание вернуться!</p>
+                        </div>
+                        
+                        <h3>Советы для успешного общения</h3>
+                        <div class="warning-box">
+                            <div class="icon">💡</div>
+                            <div>
+                                <p>• Будьте первыми, кто пишет<br>
+                                • Отвечайте в течение часа<br>
+                                • Пишите позитивно<br>
+                                • Фотографируйте много<br>
+                                • Хвалите детей при родителях<br>
+                                • Слушайте внимательно</p>
+                            </div>
+                        </div>
+                    `,
+                    quiz: [
+                        {
+                            question: "Что нужно узнать от родителей в первую очередь?",
+                            options: ["Доход семьи", "Здоровье и аллергии", "Кудазд еят отдыхать"],
+                            correct: 1
+                        },
+                        {
+                            question: "Можно ли обсуждать других детей с родителями?",
+                            options: ["Да", "Только хорошее", "Нет"],
+                            correct: 2
+                        },
+                        {
+                            question: "Что ценят родители больше всего?",
+                            options: ["Вкусную еду", "Фотографии и новости", "Мероприятия"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что делать, если ребёнку плохо?",
+                            options: ["Сказать «всё нормально»", "Срочно сообщить и принять меры", "Подождать до вечера"],
+                            correct: 1
+                        },
+                        {
+                            question: "Можно ли забрать ребёнка на один день?",
+                            options: ["Да", "Только в родительский день", "Когда угодно"],
+                            correct: 1
+                        },
+                        {
+                            question: "Как быстро нужно отвечать родителям?",
+                            options: ["В течение дня", "В течение часа", "Когда удобно"],
+                            correct: 1
+                        },
+                        {
+                            question: "Что важно после смены?",
+                            options: ["Ничего", "Отправить итог", "Попросить отзыв"],
+                            correct: 1
+                        },
+                        {
+                            question: "Когда звонить родителям?",
+                            options: ["Утром", "Вечером", "В любое время"],
+                            correct: 1
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // State
+        let state = {
+            currentLesson: 1,
+            completedLessons: new Set(),
+            completedQuizzes: new Set(),
+            lessonScores: {},
+            showFinalTest: false
+        };
+
+        // Initialize
+        function init() {
+            renderTabs();
+            renderLessons();
+            updateProgress();
+            loadState();
+        }
+
+        function renderTabs() {
+            const tabsContainer = document.getElementById('tabs');
+            tabsContainer.innerHTML = courseData.lessons.map(lesson => `
+                <button class="tab ${lesson.id === state.currentLesson ? 'active' : ''} ${state.completedLessons.has(lesson.id) ? 'completed' : ''}" 
+                    onclick="goToLesson(${lesson.id})">
+                    ${lesson.icon} ${lesson.title}
+                </button>
+            `).join('') + `
+                <button class="tab" onclick="goToFinalTest()" style="border: 2px solid var(--accent-alt);">
+                    🏆 Итоговый тест
+                </button>
+            `;
+        }
+
+        function renderLessons() {
+            const container = document.getElementById('lessonContents');
+            container.innerHTML = courseData.lessons.map(lesson => `
+                <div class="lesson-content ${lesson.id === state.currentLesson ? 'active' : ''}" data-lesson="${lesson.id}">
+                    ${lesson.content}
+                    <div class="quiz-section" id="quiz-${lesson.id}">
+                        <h3>📝 Мини-тест по теме</h3>
+                        ${lesson.quiz.map((q, i) => `
+                            <div class="quiz-question">
+                                <h4>${i + 1}. ${q.question}</h4>
+                                <div class="quiz-options">
+                                    ${q.options.map((opt, j) => `
+                                        <div class="quiz-option" onclick="checkAnswer(${lesson.id}, ${i}, ${j}, this)">${opt}</div>
+                                    `).join('')}
+                                </div>
+                                <div class="quiz-result" id="result-${lesson.id}-${i}"></div>
+                            </div>
+                        `).join('')}
+                        <button class="action-btn" onclick="finishLesson(${lesson.id})">Завершить урок</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('finalTest').classList.remove('active');
+            document.getElementById('certificate').classList.remove('active');
+        }
+
+        function goToLesson(id) {
+            state.currentLesson = id;
+            state.showFinalTest = false;
+            
+            document.querySelectorAll('.lesson-content').forEach(el => el.classList.remove('active'));
+            document.querySelector(`[data-lesson="${id}"]`).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i + 1 === id);
+            });
+            
+            window.scrollTo(0, 0);
+        }
+
+        function goToFinalTest() {
+            state.showFinalTest = true;
+            document.querySelectorAll('.lesson-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('finalTest').classList.add('active');
+            document.getElementById('certificate').classList.remove('active');
+            
+            renderFinalTest();
+            window.scrollTo(0, 0);
+        }
+
+        function renderFinalTest() {
+            const allQuestions = [];
+            courseData.lessons.forEach((lesson, li) => {
+                lesson.quiz.forEach((q, qi) => {
+                    allQuestions.push({
+                        ...q,
+                        lessonId: li + 1,
+                        lessonTitle: lesson.title
+                    });
+                });
+            });
+            
+            // Shuffle and pick 15
+            const shuffled = allQuestions.sort(() => Math.random() - 0.5).slice(0, 15);
+            
+            document.getElementById('finalTestQuestions').innerHTML = shuffled.map((q, i) => `
+                <div class="quiz-question">
+                    <h4>${i + 1}. [${q.lessonTitle}] ${q.question}</h4>
+                    <div class="quiz-options">
+                        ${q.options.map((opt, j) => `
+                            <div class="quiz-option" data-correct="${j === q.correct}" onclick="this.classList.add('checked')">${opt}</div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            window.finalQuestions = shuffled;
+        }
+
+        function checkAnswer(lessonId, questionIndex, selectedIndex, element) {
+            const lesson = courseData.lessons.find(l => l.id === lessonId);
+            const question = lesson.quiz[questionIndex];
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === question.correct) opt.classList.add('correct');
+                if (i === selectedIndex && i !== question.correct) opt.classList.add('wrong');
+            });
+            
+            const result = document.getElementById(`result-${lessonId}-${questionIndex}`);
+            const isCorrect = selectedIndex === question.correct;
+            result.className = `quiz-result show ${isCorrect ? 'success' : 'error'}`;
+            result.textContent = isCorrect ? '✓ Правильно!' : '✗ Неверно';
+        }
+
+        function finishLesson(lessonId) {
+            state.completedLessons.add(lessonId);
+            state.completedQuizzes.add(lessonId);
+            saveState();
+            updateProgress();
+            
+            if (lessonId < 12) {
+                goToLesson(lessonId + 1);
+            } else {
+                goToFinalTest();
+            }
+        }
+
+        function checkFinalTest() {
+            const questions = document.querySelectorAll('#finalTestQuestions .quiz-option.checked');
+            let correct = 0;
+            
+            questions.forEach(q => {
+                if (q.classList.contains('correct')) correct++;
+            });
+            
+            const total = window.finalQuestions.length;
+            const percent = Math.round((correct / total) * 100);
+            
+            document.getElementById('finalScore').textContent = percent + '%';
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('totalCount').textContent = total;
+            
+            document.getElementById('finalResult').className = `quiz-result show ${percent >= 70 ? 'success' : 'error'}`;
+            document.getElementById('finalResult').textContent = percent >= 70 
+                ? `Поздравляем! Вы прошли итоговый тест! (${correct}/${total})` 
+                : `Нужно набрать минимум 70%. Ваш результат: ${percent}%`;
+            
+            if (percent >= 70) {
+                document.getElementById('certificate').classList.add('active');
+            }
+        }
+
+        function updateProgress() {
+            const completed = state.completedLessons.size;
+            const total = courseData.lessons.length;
+            const percent = Math.round((completed / total) * 100);
+            
+            document.getElementById('headerProgress').style.width = percent + '%';
+            document.getElementById('progressText').textContent = percent + '%';
+            document.getElementById('lessonsCompleted').textContent = `${completed}/${total}`;
+            document.getElementById('testsCompleted').textContent = `${state.completedQuizzes.size}/${total}`;
+            document.getElementById('totalScore').textContent = percent + '%';
+            
+            renderTabs();
+        }
+
+        function saveState() {
+            localStorage.setItem('counselorCourse', JSON.stringify({
+                completedLessons: Array.from(state.completedLessons),
+                completedQuizzes: Array.from(state.completedQuizzes)
+            }));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('counselorCourse');
+            if (saved) {
+                const data = JSON.parse(saved);
+                state.completedLessons = new Set(data.completedLessons);
+                state.completedQuizzes = new Set(data.completedQuizzes);
+                updateProgress();
+            }
+        }
+
+        function restartCourse() {
+            if (confirm('Сбросить весь прогресс?')) {
+                localStorage.removeItem('counselorCourse');
+                state = {
+                    currentLesson: 1,
+                    completedLessons: new Set(),
+                    completedQuizzes: new Set(),
+                    lessonScores: {},
+                    showFinalTest: false
+                };
+                goToLesson(1);
+                updateProgress();
+            }
+        }
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>
