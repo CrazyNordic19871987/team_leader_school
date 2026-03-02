@@ -1,22 +1,253 @@
-### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-#launch.json folder
+# 🎯 ИнноСити - .gitignore
+
+## System Files
+####################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.bak
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+## IDE / Editor Files
+####################
+# VS Code
 .vscode/
-#Cache folder
-.alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
-.snapshots/
-#Testing Output folder
-.output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-file
-*.flf
-#Test results file
-TestResults.xml
+*.code-workspace
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.history/
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+.atom/
+.buildlog/
+
+# Sublime Text
+*.sublime-*
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+## Windows
+####################
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+*.tmp
+*.temp
+*.log
+*.dll
+*.exe
+*.dmg
+*.pkg
+*.deb
+*.rpm
+
+## macOS
+####################
+*.icloud
+*.icloud.d
+com.apple.timemachine.donotpresent
+*.AppleDouble
+*.LSOverride
+Icon
+._*
+*.DS_Store
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+## Linux
+####################
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+## Excel Temporary Files
+####################
+~$*.xlsx
+~$*.xls
+*.xlsx~
+*.xls~
+*.~lock.*
+*.~lock.~*
+.*.un~
+*.xlsb
+*.xlsm
+~$*.xlsm
+*.xlsm~
+*.xltx
+*.xltm
+*.xlam
+
+## PowerPoint Temporary Files
+####################
+~$*.pptx
+~$*.ppt
+*.pptx~
+*.ppt~
+*.potx
+*.ppsx
+*.ppsm
+*.ppam
+~$*.pptm
+
+## Logs and Databases
+####################
+*.log
+*.sql
+*.sqlite
+*.db
+*.mdb
+*.accdb
+logs/
+*.log.*
+
+## Development
+####################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.env
+.env.local
+.env.*.local
+.cache
+.temp
+tmp/
+temp/
+
+## Testing
+####################
+coverage/
+.nyc_output/
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+*.test.tsx
+*.spec.tsx
+test-results/
+junit.xml
+
+## Backup files
+####################
+*.backup
+*.old
+*.orig
+*.copy
+*.copied
+*.saved
+*.save
+*_backup
+backup-*
+*-backup
+./backups/
+./backup/
+
+## Project specific
+####################
+# Sensitive Excel files (if they contain private data - uncomment if needed)
+# *Финансовая_модель*.xlsx
+# *Контент_план*.xlsx
+
+# Local development config
+*.local
+config.local.*
+.env.local
+
+# Archive folders
+archive/
+old/
+deprecated/
+temp-assets/
+tmp-assets/
+
+# Large binary assets (optional - if you add images/videos later)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.psd
+*.ai
+*.tiff
+*.bmp
+*.raw
+*.cr2
+*.cr3
+*.nef
+*.arw
+
+# Don't ignore Excel and PowerPoint files by default (they are part of the project)
+# But ignore temporary/auto-save versions as above
+!*.xlsx
+!*.pptx
+!*.xls
+!*.ppt
+
+# Keep these project files
+!README.md
+!index.html
+!gloria-game.html
+!gloria-quiz.html
+!assets/
+!assets/style.css
+!assets/script.js
+!assets/quiz.js
+
+# Package manager (if you add npm later)
+package-lock.json
+yarn.lock
+node_modules/
+
+# GitHub Pages (if you use custom domain)
+CNAME
+
+# Vercel/Netlify (if you deploy)
+.vercel
+.netlify
+_build/
+dist/
+out/
+build/
