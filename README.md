@@ -1,3 +1,48 @@
+# 🌆 ИнноСити (InnoCity) — летний лагерь будущего
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yourusername/innocity-camp/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/innocity-camp)](https://github.com/yourusername/innocity-camp/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/innocity-camp)](https://github.com/yourusername/innocity-camp/network)
+[![Made with](https://img.shields.io/badge/made%20with-love-FFB800.svg)](#)
+[![Camp start](https://img.shields.io/badge/start-7%20June%202026-00C48C.svg)](#)
+
+<p align="center">
+  <img src="https://via.placeholder.com/800x400/0B1A33/FFFFFF?text=ИнноСити+%7C+InnoCity" alt="ИнноСити banner" width="800">
+</p>
+
+## 📋 О проекте
+
+**ИнноСити (InnoCity)** — это образовательный летний лагерь для детей 7–13 лет, где урбанистика, предпринимательство и ESG встречаются с английским языком и искусственным интеллектом. 
+
+За 14 дней каждый ребенок проходит через **4 департамента**, пробует **8 разных ролей**, создает **2 проекта** и получает персональную **карту талантов**.
+
+---
+
+## ✨ Ключевые особенности
+
+| | |
+|---|---|
+| 👥 **5 смен** по 14 дней | 🏢 **4 департамента** по 10-12 детей |
+| 🔄 **8 ролей** с ротацией каждые 2-3 дня | 🌍 **ESG + урбанистика** |
+| 💼 **Предпринимательство** для детей | 🤖 **Основы AI** |
+| 🗣️ **Английский** с носителями | 🎯 **2 возрастные группы**: 7-9 и 10-13 лет |
+| 📊 **Карта талантов** выпускника | 🏆 **Финальная презентация** проектов |
+
+---
+
+## 🗂️ Структура репозитория
+innocity-camp/
+├── 📄 index.html # Основная презентация (19 слайдов)
+├── 📄 gloria-game.html # Браузерная игра "Хранитель города"
+├── 📄 gloria-quiz.html # Интерактивный квиз
+├── 📊 ИнноСити_Финансовая_модель.xlsx # Финансовая модель (5 листов)
+├── 📊 ИнноСити_Контент_план.xlsx # Контент-план (8 листов)
+├── 📀 InnoCity_Presentation.pptx # PowerPoint версия (19 слайдов)
+├── 📁 assets/
+│ ├── 🎨 style.css # Стили презентации
+│ ├── ⚙️ script.js # Скрипты для навигации и таймера
+│ └── ❓ quiz.js # Логика для квиза
+└── 📝 README.md # Документация
 
 ---
 
